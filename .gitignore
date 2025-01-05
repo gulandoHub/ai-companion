@@ -1,0 +1,87 @@
+# Frontend
+## dependencies
+frontend/node_modules
+frontend/.pnp
+frontend/.pnp.js
+
+## testing
+frontend/coverage
+
+## production
+frontend/build
+
+## misc
+frontend/.env
+frontend/.env.local
+frontend/.env.development.local
+frontend/.env.test.local
+frontend/.env.production.local
+
+## logs
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+
+# Backend
+## Python
+backend/__pycache__/
+backend/**/__pycache__/
+backend/*.py[cod]
+backend/*$py.class
+backend/*.so
+backend/.Python
+backend/env/
+backend/build/
+backend/develop-eggs/
+backend/dist/
+backend/downloads/
+backend/eggs/
+backend/.eggs/
+backend/lib/
+backend/lib64/
+backend/parts/
+backend/sdist/
+backend/var/
+backend/wheels/
+backend/*.egg-info/
+backend/.installed.cfg
+backend/*.egg
+
+## Virtual Environment
+backend/venv/
+backend/ENV/
+backend/.env
+
+## Database
+backend/*.sqlite3
+backend/*.db
+
+# Common
+## IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+## System Files
+.DS_Store
+Thumbs.db
+
+## Logs
+*.log
+
+## Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+## Test coverage
+.coverage
+htmlcov/
+
+## Cache
+.pytest_cache/
+.mypy_cache/
+.eslintcache
