@@ -85,3 +85,5 @@ htmlcov/
 .pytest_cache/
 .mypy_cache/
 .eslintcache
+
+venv/*
