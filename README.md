@@ -8,6 +8,7 @@ An AI-powered companion application built with FastAPI, React, and PostgreSQL th
 - Node.js 14+
 - PostgreSQL
 - OpenAI API key
+- Docker and Docker Compose (for containerized setup)
 
 ## Project Structure
 
@@ -16,10 +17,43 @@ ai-companion/
 ├── backend/           # FastAPI backend
 ├── frontend/         # React frontend
 ├── venv/            # Python virtual environment
+├── docker-compose.yml # Docker configuration
 └── README.md
 ```
 
 ## Setup Instructions
+
+### Option 1: Docker Setup (Recommended)
+
+The easiest way to run the application is using Docker:
+
+```bash
+# Clone the repository
+git clone <repository-url>
+cd ai-companion
+
+# Create .env file in the root directory with:
+SECRET_KEY=your_secret_key
+OPENAI_API_KEY=your_openai_api_key
+
+# Start the application using Docker
+./docker-start.sh
+
+# Alternatively, you can run:
+docker-compose up -d --build
+```
+
+The application will be available at:
+- Frontend: http://localhost:3000
+- Backend API: http://localhost:8000
+- API Documentation: http://localhost:8000/docs
+
+To stop the Docker containers:
+```bash
+docker-compose down
+```
+
+### Option 2: Manual Setup
 
 ### 1. Database Setup
 
