@@ -52,13 +52,26 @@ const ChatWindow = ({ conversationId }) => {
     if (!newMessage.trim() || !conversationId || isLoading) return;
 
     setIsLoading(true);
+    const userMessage = {
+      content: newMessage,
+      is_ai: false,
+      id: Date.now(), // temporary ID
+      created_at: new Date().toISOString()
+    };
+    
+    // Immediately add user's message to the UI
+    setMessages(prevMessages => [...prevMessages, userMessage]);
+    setNewMessage('');
+    
     try {
-      const message = await chat.sendMessage(conversationId, newMessage);
-      setMessages([...messages, message]);
-      setNewMessage('');
+      const response = await chat.sendMessage(conversationId, userMessage.content);
+      // Keep the user's message and add the AI's response
+      setMessages(prevMessages => [...prevMessages, response]);
       scrollToBottom();
     } catch (error) {
       console.error('Error sending message:', error);
+      // Remove the temporary message if there was an error
+      setMessages(prevMessages => prevMessages.filter(msg => msg.id !== userMessage.id));
     } finally {
       setIsLoading(false);
     }
