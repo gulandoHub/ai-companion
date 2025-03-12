@@ -119,7 +119,7 @@ const Chat = () => {
     <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
       <Toolbar>
         <Typography variant="h6" noWrap component="div">
-          AI Companion
+          Financial Advisor
         </Typography>
       </Toolbar>
       <Divider />

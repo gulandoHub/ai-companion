@@ -40,7 +40,7 @@ const Register = () => {
         }}
       >
         <Typography component="h1" variant="h5">
-          Create your AI Companion Account
+          Create your Financial Advisor Account
         </Typography>
         {error && <Alert severity="error" sx={{ mt: 2, width: '100%' }}>{error}</Alert>}
         <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>

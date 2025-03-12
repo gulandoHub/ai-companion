@@ -11,7 +11,7 @@ sleep 10
 echo "Running database migrations..."
 docker-compose exec backend alembic upgrade head
 
-echo "AI Companion is now running!"
+echo "Financial Recommendation System is now running!"
 echo "Frontend: http://localhost:3000"
 echo "Backend API: http://localhost:8000/api"
 echo "To stop the services, run: docker-compose down" 

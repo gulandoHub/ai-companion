@@ -33,7 +33,7 @@ const Login = () => {
         }}
       >
         <Typography component="h1" variant="h5">
-          Sign in to AI Companion
+          Sign in to Financial Advisor
         </Typography>
         {error && <Alert severity="error" sx={{ mt: 2, width: '100%' }}>{error}</Alert>}
         <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>

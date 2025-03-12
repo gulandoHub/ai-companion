@@ -1,6 +1,6 @@
-# AI Companion Application
+# Financial Recommendation System
 
-An AI-powered companion application built with FastAPI, React, and PostgreSQL that provides psychological support through AI interactions.
+A financial advisory system built with FastAPI, React, and PostgreSQL that provides personalized financial recommendations and market insights.
 
 ## Prerequisites
 
@@ -13,7 +13,7 @@ An AI-powered companion application built with FastAPI, React, and PostgreSQL th
 ## Project Structure
 
 ```
-ai-companion/
+financial-advisor/
 ├── backend/           # FastAPI backend
 ├── frontend/         # React frontend
 ├── venv/            # Python virtual environment
@@ -30,7 +30,7 @@ The easiest way to run the application is using Docker:
 ```bash
 # Clone the repository
 git clone <repository-url>
-cd ai-companion
+cd financial-advisor
 
 # Create .env file in the root directory with:
 SECRET_KEY=your_secret_key
@@ -66,8 +66,8 @@ psql
 
 # In PostgreSQL prompt, run:
 ALTER USER postgres WITH PASSWORD 'postgres';
-CREATE DATABASE ai_companion;
-GRANT ALL PRIVILEGES ON DATABASE ai_companion TO postgres;
+CREATE DATABASE financial_advisor;
+GRANT ALL PRIVILEGES ON DATABASE financial_advisor TO postgres;
 
 # Exit PostgreSQL prompt
 \q
@@ -86,7 +86,7 @@ pip install -r requirements.txt
 
 # Set up environment variables
 # Create .env file in backend directory with:
-DATABASE_URL=postgresql://postgres:postgres@localhost/ai_companion
+DATABASE_URL=postgresql://postgres:postgres@localhost/financial_advisor
 SECRET_KEY=your_secret_key
 OPENAI_API_KEY=your_openai_api_key
 
@@ -135,7 +135,7 @@ The application will be available at:
 ```bash
 # Connect to PostgreSQL
 sudo -i -u postgres
-psql ai_companion
+psql financial_advisor
 
 # Useful PostgreSQL commands:
 \dt             # List all tables

@@ -8,7 +8,7 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=ai_companion
+      - POSTGRES_DB=financial_advisor
     ports:
       - "5432:5432"
     healthcheck:
@@ -27,7 +27,7 @@ services:
       db:
         condition: service_healthy
     environment:
-      - DATABASE_URL=postgresql://postgres:postgres@db/ai_companion
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/financial_advisor
       - SECRET_KEY=${SECRET_KEY}
       - OPENAI_API_KEY=${OPENAI_API_KEY}
     command: >

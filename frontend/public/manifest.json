@@ -1,6 +1,6 @@
 {
-  "short_name": "AI Companion",
-  "name": "AI Companion - Your Personal AI Support System",
+  "short_name": "Financial Advisor",
+  "name": "Financial Recommendation System - Your Personal Financial Advisor",
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
