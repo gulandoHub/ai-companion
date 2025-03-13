@@ -18,26 +18,28 @@ services:
       retries: 5
 
   backend:
-    build: ./backend
+    build: 
+      context: ../backend
     volumes:
-      - ./backend:/app
+      - ../backend:/app
     ports:
       - "8000:8000"
     depends_on:
       db:
         condition: service_healthy
+    env_file:
+      - .env
     environment:
       - DATABASE_URL=postgresql://postgres:postgres@db:5432/financial_advisor
-      - SECRET_KEY=${SECRET_KEY}
-      - OPENAI_API_KEY=${OPENAI_API_KEY}
     command: >
       sh -c "alembic upgrade head &&
              uvicorn app.main:app --host 0.0.0.0 --port 8000"
 
   frontend:
-    build: ./frontend
+    build:
+      context: ../frontend
     volumes:
-      - ./frontend:/app
+      - ../frontend:/app
       - /app/node_modules
     ports:
       - "3000:3000"
