@@ -2,6 +2,40 @@
 
 A financial advisory system built with FastAPI, React, and PostgreSQL that provides personalized financial recommendations and market insights.
 
+## Features
+
+- **AI-Powered Financial Advice**: Leverages OpenAI's GPT models to provide recommendations on stocks, trading, and cryptocurrency
+- **Conversation Management**: Create, name, and manage multiple chat sessions
+- **User Authentication**: Secure login and registration system
+- **Model Fine-Tuning**: Support for fine-tuning the AI model with financial data
+- **Responsive UI**: Works on desktop and mobile devices
+
+## Project Structure
+
+```
+financial-advisor/
+├── backend/                # FastAPI backend
+│   ├── app/                # Application code
+│   │   ├── core/           # Core settings and configuration
+│   │   ├── models/         # Database models
+│   │   ├── routers/        # API routes
+│   │   └── schemas/        # Pydantic schemas
+│   ├── alembic/            # Database migrations
+│   └── data/               # Training data for fine-tuning
+├── frontend/               # React frontend
+│   ├── public/             # Static files
+│   └── src/                # React source code
+│       ├── components/     # UI components
+│       ├── context/        # React context providers
+│       ├── pages/          # Page components
+│       └── services/       # API service layer
+├── config/                 # Configuration files and scripts
+│   ├── docker-compose.yml  # Docker configuration
+│   ├── docker-start.sh     # Docker startup script
+│   └── start.sh            # Local development startup script
+└── README.md
+```
+
 ## Prerequisites
 
 - Python 3.8+
@@ -9,17 +43,6 @@ A financial advisory system built with FastAPI, React, and PostgreSQL that provi
 - PostgreSQL
 - OpenAI API key
 - Docker and Docker Compose (for containerized setup)
-
-## Project Structure
-
-```
-financial-advisor/
-├── backend/           # FastAPI backend
-├── frontend/         # React frontend
-├── venv/            # Python virtual environment
-├── docker-compose.yml # Docker configuration
-└── README.md
-```
 
 ## Setup Instructions
 
@@ -32,11 +55,13 @@ The easiest way to run the application is using Docker:
 git clone <repository-url>
 cd financial-advisor
 
-# Create .env file in the root directory with:
+# Create .env file in the config directory with:
+DATABASE_URL=postgresql://postgres:postgres@db:5432/financial_advisor
 SECRET_KEY=your_secret_key
 OPENAI_API_KEY=your_openai_api_key
 
 # Start the application using Docker
+cd config
 ./docker-start.sh
 
 # Alternatively, you can run:
@@ -55,7 +80,7 @@ docker-compose down
 
 ### Option 2: Manual Setup
 
-### 1. Database Setup
+#### 1. Database Setup
 
 ```bash
 # Login to PostgreSQL as postgres user
@@ -73,7 +98,7 @@ GRANT ALL PRIVILEGES ON DATABASE financial_advisor TO postgres;
 \q
 ```
 
-### 2. Backend Setup
+#### 2. Backend Setup
 
 ```bash
 # Create and activate virtual environment
@@ -97,7 +122,7 @@ alembic upgrade head
 uvicorn app.main:app --reload --port 8000
 ```
 
-### 3. Frontend Setup
+#### 3. Frontend Setup
 
 ```bash
 # Install dependencies
@@ -108,67 +133,27 @@ npm install
 npm start
 ```
 
-## Running the Application
-
-1. **Start Backend**:
-```bash
-cd backend
-source ../venv/bin/activate
-uvicorn app.main:app --reload --port 8000
-```
-
-2. **Start Frontend**:
-```bash
-cd frontend
-npm start
-```
-
-The application will be available at:
-- Frontend: http://localhost:3000
-- Backend API: http://localhost:8000
-- API Documentation: http://localhost:8000/docs
-
-## Database Management
-
-### Accessing PostgreSQL Database
-
-```bash
-# Connect to PostgreSQL
-sudo -i -u postgres
-psql financial_advisor
-
-# Useful PostgreSQL commands:
-\dt             # List all tables
-\d table_name   # Describe table structure
-\q              # Quit PostgreSQL
-
-# Example queries:
-SELECT * FROM users;
-SELECT * FROM conversations;
-SELECT * FROM messages;
-```
-
-### Running Migrations
-
-```bash
-cd backend
-source ../venv/bin/activate
-alembic upgrade head          # Apply all migrations
-alembic downgrade -1         # Rollback last migration
-alembic revision -m "description"  # Create new migration
-```
-
 ## API Endpoints
 
 - **Authentication**:
   - POST `/api/auth/register` - Register new user
   - POST `/api/auth/token` - Login and get access token
 
+- **User**:
+  - GET `/api/users/me` - Get current user profile
+  - PUT `/api/users/me` - Update user profile
+
 - **Chat**:
   - POST `/api/chat/conversations` - Create new conversation
   - GET `/api/chat/conversations` - List user's conversations
   - POST `/api/chat/{conversation_id}/messages` - Send message
   - GET `/api/chat/{conversation_id}/messages` - Get conversation messages
+  - DELETE `/api/chat/conversations/{conversation_id}` - Delete conversation
+  - PATCH `/api/chat/conversations/{conversation_id}/name` - Update conversation name
+
+- **Fine Tuning**:
+  - POST `/api/fine-tune` - Start fine-tuning process
+  - GET `/api/fine-tune/{fine_tune_id}/status` - Check fine-tuning status
 
 ## Troubleshooting
 
@@ -184,7 +169,7 @@ alembic revision -m "description"  # Create new migration
 
 3. **Frontend Connection Issues**:
    - Check if backend is running and accessible
-   - Verify API URL in frontend configuration
+   - Verify API URL in frontend configuration (default is http://localhost:8000/api)
    - Check browser console for CORS errors
 
 ## Security Notes
@@ -194,16 +179,15 @@ alembic revision -m "description"  # Create new migration
 - Regularly update dependencies for security patches
 - Use strong passwords for database access
 
-## Development Note
+## Development Workflow
 
-This project has been developed entirely through prompt engineering and configuration, without writing traditional code manually. The entire codebase was generated using:
-- Carefully crafted prompts
-- AI-assisted development
-- Configuration management
-- System architecture design through prompts
+To contribute to this project:
 
-Development Environment:
-- Cursor AI-powered IDE
-- WindSurf AI-powered IDE
+1. Create a feature branch from main
+2. Make your changes
+3. Test thoroughly
+4. Submit a pull request
 
-This approach demonstrates the potential of AI-assisted development in creating full-stack applications efficiently while maintaining high code quality and following best practices.
+## License
+
+[MIT License](LICENSE)
